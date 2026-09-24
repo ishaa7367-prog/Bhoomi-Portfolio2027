@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — Bhoomi Agarwal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0f0508;
+    --bg-panel: #1a0a0d;
+    --wine: #7c1a28;
+    --wine-light: #b8455a;
+    --cream: #f0dfc9;
+    --ink: #f5ece1;
+    --muted: #c9a9a0;
+    --line: rgba(240,223,201,0.14);
+    --white: #fffaf2;
+    --max: 1240px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;
+    cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="36" viewBox="0 0 30 36"><rect x="1.5" y="1.5" width="23" height="30" rx="3" fill="none" stroke="%23b8455a" stroke-width="1.3"/><path d="M13 10 L17 16.5 L13 23 L9 16.5 Z" fill="none" stroke="%23b8455a" stroke-width="1.1"/></svg>') 5 5, auto !important;
+  }
+  a, button, .sc-card, .g-item, .frame-box, input, textarea, [role="button"]{
+    cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="36" viewBox="0 0 30 36"><rect x="1.5" y="1.5" width="23" height="30" rx="3" fill="none" stroke="%23b8455a" stroke-width="1.3"/><path d="M13 10 L17 16.5 L13 23 L9 16.5 Z" fill="none" stroke="%23b8455a" stroke-width="1.1"/></svg>') 5 5, pointer !important;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:var(--max);margin:0 auto;padding:0 48px;}
+
+  header{
+    position:sticky;top:0;z-index:100;background:rgba(15,5,8,0.75);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.container{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;flex-wrap:wrap;gap:16px;}
+  .site-signature{
+    font-family:'Caveat',cursive;font-weight:700;font-size:1.6rem;letter-spacing:0.02em;
+    color:var(--wine-light);transition:color .25s;
+  }
+  .site-signature:hover{color:var(--cream);}
+  .nav-links{
+    display:flex;gap:32px;list-style:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+  }
+  .nav-links a{color:var(--muted);transition:color .25s;}
+  .nav-links a:hover{color:var(--cream);}
+
+  .hero{padding:70px 0 40px;}
+  .eyebrow{
+    font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;gap:14px;margin-bottom:18px;
+  }
+  .eyebrow::after{content:"";display:block;height:1px;width:44px;background:var(--line);}
+  .hero h1{font-size:3.2rem;color:var(--cream);line-height:1.1;margin-bottom:14px;}
+  .hero .subhead{font-size:1.1rem;color:var(--wine-light);font-style:italic;font-family:'Cormorant Garamond',serif;}
+
+  .cover-wrap{position:relative;margin:50px 0;}
+  .cover-image{
+    aspect-ratio:16/9;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);
+    font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;text-align:center;
+    overflow:hidden;
+  }
+  .cover-image:not(.has-image){padding:20px;}
+  .cover-image img{width:100%;height:100%;object-fit:cover;display:block;}
+  .corner-label{
+    text-align:center;max-width:520px;margin:-42px auto 0;
+    font-weight:700;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;line-height:1.5;
+    color:var(--muted);
+  }
+  .corner-label:empty{display:none;margin:0;}
+  .cover-headline{
+    position:absolute;top:21%;left:8%;z-index:2;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    font-family:'Jost',sans-serif;font-weight:700;text-transform:uppercase;
+    color:#f4ece1;line-height:0.92;letter-spacing:0.01em;opacity:0.80;
+    text-shadow:0 4px 24px rgba(0,0,0,0.55);
+  }
+  .cover-headline .line1,.cover-headline .line2{transform:scaleX(0.86);transform-origin:center;}
+  .cover-headline .line1{font-size:68px;}
+  .cover-headline .line2{font-size:85px;}
+
+  section{padding:50px 0;}
+  .content-grid{display:grid;grid-template-columns:220px 1fr;gap:60px;}
+  .content-grid h2{font-size:1.6rem;color:var(--cream);}
+  .content-grid .body-text{color:var(--muted);font-size:0.98rem;line-height:1.8;max-width:640px;}
+  .content-grid .body-text p{margin-bottom:18px;}
+  #p-process-after p:last-child{margin-bottom:0;}
+  .content-grid .body-text .placeholder{
+    color:var(--muted);opacity:0.7;font-style:italic;border:1px dashed var(--line);padding:14px 16px;border-radius:2px;
+  }
+  .body-text.split-layout{display:flex;gap:32px;align-items:flex-start;max-width:none;}
+  #p-process-text-wrap.split-layout{align-items:center;}
+  .split-layout .frame-box{
+    width:min(580px,50%);aspect-ratio:4/3;flex-shrink:0;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;text-align:center;
+    padding:16px;overflow:hidden;
+  }
+  .split-layout .frame-box.has-image{padding:0;border:none;}
+  .split-layout .frame-box img{width:100%;height:100%;object-fit:cover;display:block;}
+  .split-layout .frame-box.auto{aspect-ratio:auto;}
+  .split-layout .frame-box.auto img{width:100%;height:auto;object-fit:contain;display:block;}
+  .brief-gallery{
+    grid-column:1/-1;max-width:none;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px;
+  }
+  .brief-gallery .frame-box{
+    width:auto;height:auto;aspect-ratio:4/3;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;text-align:center;padding:16px;
+    overflow:hidden;
+  }
+  .brief-gallery .frame-box.has-image{padding:0;border:none;}
+  .brief-gallery .frame-box.portrait{aspect-ratio:2/3;}
+  .brief-gallery .frame-box img{width:100%;height:100%;object-fit:cover;display:block;}
+  .brief-gallery-item{display:flex;flex-direction:column;gap:12px;}
+  .brief-gallery-caption{
+    font-size:0.82rem;color:var(--muted);line-height:1.6;
+    border:1px solid var(--line);border-radius:2px;padding:14px 16px;
+  }
+  .brief-gallery-caption strong{color:var(--cream);font-weight:600;display:block;margin-bottom:8px;}
+  .brief-gallery-caption.placeholder{
+    color:var(--muted);opacity:0.7;font-style:italic;border:1px dashed var(--line);padding:10px 12px;border-radius:2px;
+  }
+  .brief-gallery:empty{display:none;margin-top:0;}
+
+  .research-gallery{
+    grid-column:1/-1;max-width:none;margin-top:32px;
+    display:grid;grid-template-columns:1fr;gap:20px;
+  }
+  .research-gallery:empty{display:none;margin-top:0;}
+  .research-gallery .frame-box{
+    aspect-ratio:2/1;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;text-align:center;padding:16px;
+    overflow:hidden;
+  }
+  .research-gallery .frame-box.has-image{padding:0;border:none;}
+  .research-gallery .frame-box img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .presskit-gallery{
+    grid-column:1/-1;max-width:420px;margin-top:32px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+  }
+  .presskit-gallery:empty{display:none;margin-top:0;}
+  .presskit-gallery .frame-box{
+    aspect-ratio:2/3;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;text-align:center;padding:16px;
+    overflow:hidden;
+  }
+  .presskit-gallery .frame-box.has-image{padding:0;border:none;}
+  .presskit-gallery .frame-box img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .exhibition-list{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;}
+  .budget-table{width:100%;border-collapse:collapse;margin-top:18px;background:none;table-layout:fixed;}
+  .budget-table td{
+    border:1px solid var(--line);padding:4px 26px;font-size:0.84rem;color:var(--muted);
+    line-height:1.4;vertical-align:middle;background:none;
+  }
+  .exhibition-list .ex-item{padding:18px 0;border-bottom:1px solid var(--line);}
+  .exhibition-list .ex-label{
+    font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block;
+  }
+  .exhibition-list .ex-value{font-size:1rem;color:var(--ink);}
+  .split-layout .split-text{flex:1;min-width:0;}
+
+  .process-gallery{
+    grid-column:1/-1;max-width:none;margin-top:20px;width:fit-content;
+  }
+  .process-gallery-row{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start;justify-content:center;
+  }
+  .process-gallery-group{
+    display:flex;flex-direction:column;width:fit-content;flex:0 0 auto;
+  }
+  .process-gallery-group.side{
+    flex-direction:row;align-items:center;gap:20px;width:auto;max-width:100%;
+  }
+  .process-gallery-group.side .brief-gallery-caption{
+    margin-top:0;width:150px;flex:0 0 auto;font-size:0.76rem;padding:12px 14px;
+  }
+  .process-gallery-lockrow{
+    display:flex;flex-wrap:nowrap;gap:5px;align-items:flex-start;width:fit-content;
+  }
+  .process-gallery-lockrow .process-gallery-group{flex:0 0 auto;width:280px;}
+  .process-gallery-lockrow .brief-gallery-caption{
+    margin-top:4px!important;padding:8px 10px!important;text-align:left;
+  }
+  .process-gallery .frame-box{
+    width:auto;height:280px;aspect-ratio:2/1;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;text-align:center;padding:16px;
+    overflow:hidden;flex:0 0 auto;
+  }
+  .process-gallery .frame-box.has-image{padding:0;border:none;}
+  .process-gallery .frame-box img{width:100%;height:100%;object-fit:cover;display:block;}
+  .process-gallery .frame-box.auto{aspect-ratio:auto;width:max-content;background:none;}
+  .process-gallery .frame-box.auto img{width:auto;height:100%;object-fit:contain;display:block;}
+  .process-gallery:empty{display:none;margin-top:0;}
+  #p-process-text-wrap.full-width{grid-column:1/-1;margin:24px auto 0;max-width:640px;}
+  .detail-boxes{
+    grid-column:1/-1;max-width:none;margin-top:16px;
+    display:flex;flex-wrap:wrap;justify-content:center;gap:20px;
+  }
+  .detail-boxes:empty{display:none;margin-top:0;}
+  .detail-box{
+    width:calc(25% - 15px);
+    font-size:0.82rem;color:var(--muted);line-height:1.6;
+    border:1px solid var(--line);border-radius:2px;padding:14px 16px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .detail-box strong{color:var(--cream);font-weight:600;display:block;margin-bottom:10px;}
+  .detail-box.placeholder{
+    color:var(--muted);opacity:0.7;font-style:italic;border:1px dashed var(--line);padding:10px 12px;border-radius:2px;
+  }
+  .detail-box.wide{width:100%;}
+  .detail-box.half{width:calc(50% - 10px);}
+  .detail-box.third{width:calc(33.333% - 14px);}
+
+  /* ===== 3D SHOWCASE CAROUSEL ===== */
+  #section-showcase3d{
+    padding:40px 0;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;
+    width:100vw;min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
+    background:radial-gradient(ellipse 70% 60% at 50% 55%, rgba(124,26,40,0.14), transparent 70%);
+  }
+  .sc-doodle{
+    position:absolute;color:var(--wine-light);opacity:0.35;pointer-events:none;z-index:1;
+  }
+  .sc-doodle-scissors{top:8%;left:6%;width:52px;height:52px;transform:rotate(-12deg);}
+  .sc-doodle-thread{bottom:10%;left:9%;width:64px;height:64px;transform:rotate(8deg);}
+  .sc-doodle-star{top:14%;right:8%;width:34px;height:34px;}
+  .sc-doodle-button{bottom:14%;right:7%;width:44px;height:44px;transform:rotate(-6deg);}
+  @media (max-width: 900px){
+    .sc-doodle{display:none;}
+  }
+  .showcase3d-intro{
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    margin-bottom:36px;width:100%;
+  }
+  .showcase3d-intro-line{width:60px;height:1px;background:rgba(240,223,201,0.3);}
+  .showcase3d-intro-label{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--wine-light);
+  }
+  .showcase3d-wrap{
+    position:relative;width:100%;flex:1 1 auto;display:flex;align-items:center;
+  }
+  .showcase3d-text{
+    position:relative;z-index:10;padding:0 5vw;background:none;border:none;
+    flex:0 0 auto;max-width:300px;
+  }
+  .showcase3d-text.sc-glass{
+    margin-left:5vw;padding:26px 24px;background:rgba(20,9,12,0.55);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(240,223,201,0.18);border-radius:18px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);max-width:280px;
+  }
+  .sc-bottom{
+    position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:12;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+  }
+  .sc-bottombar{
+    display:flex;align-items:center;gap:12px;
+    background:rgba(20,9,12,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(240,223,201,0.18);border-radius:40px;padding:8px 14px 8px 8px;
+  }
+  .sc-bar-arrow{
+    width:32px;height:32px;border-radius:50%;border:1px solid rgba(240,223,201,0.25);background:none;color:var(--cream);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s;flex-shrink:0;
+  }
+  .sc-bar-arrow:hover{background:rgba(240,223,201,0.14);}
+  .sc-bar-thumb{width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid rgba(240,223,201,0.3);}
+  .sc-bar-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sc-bar-info{display:flex;flex-direction:column;line-height:1.25;margin-right:6px;}
+  .sc-bar-title{font-size:0.8rem;color:var(--cream);font-weight:500;}
+  .sc-bar-sub{font-size:0.66rem;color:var(--muted);}
+  .sc-bar-heart{
+    width:32px;height:32px;border-radius:50%;border:none;background:none;color:var(--muted);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color .25s;flex-shrink:0;
+  }
+  .sc-bar-heart:hover{color:var(--wine-light);}
+  #section-showcase3d.sc-expanded{min-height:100vh;}
+  #section-showcase3d.sc-expanded .showcase3d-stage{height:88vh;}
+  #section-showcase3d.sc-expanded .showcase3d-text{opacity:0;pointer-events:none;transition:opacity .3s ease;}
+  .sc-num{
+    display:block;font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:1.1rem;color:var(--wine-light);margin-bottom:10px;letter-spacing:0.05em;
+  }
+  .sc-title{
+    font-size:2.3rem;line-height:1.1;color:var(--cream);margin-bottom:14px;
+  }
+  .sc-desc{
+    font-size:0.88rem;line-height:1.6;color:var(--muted);margin-bottom:18px;max-width:260px;
+  }
+  .sc-link{
+    display:inline-flex;align-items:center;gap:6px;font-size:0.76rem;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--cream);border-bottom:1px solid var(--line);padding-bottom:4px;
+    transition:color .25s,border-color .25s;
+  }
+  .sc-link span{transition:transform .25s;}
+  .sc-link:hover{color:var(--wine-light);border-color:var(--wine-light);}
+  .sc-link:hover span{transform:translateX(4px);}
+
+  .showcase3d-stage{
+    position:relative;flex:1 1 auto;width:100%;height:68vh;
+  }
+  .sc-hint{
+    position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:5;
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;
+    letter-spacing:0.04em;color:var(--muted);white-space:nowrap;
+  }
+  .sc-portal-beams{
+    position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:520px;height:340px;pointer-events:none;z-index:0;
+    background:
+      conic-gradient(from 250deg at 50% 100%,
+        transparent 0deg, rgba(184,69,90,0.32) 12deg, transparent 24deg,
+        transparent 60deg, rgba(184,69,90,0.22) 72deg, transparent 84deg,
+        transparent 130deg, rgba(184,69,90,0.28) 142deg, transparent 154deg,
+        transparent 190deg);
+    -webkit-mask-image:linear-gradient(to top, black 0%, transparent 85%);
+    mask-image:linear-gradient(to top, black 0%, transparent 85%);
+  }
+  .sc-portal-rings{
+    position:absolute;left:50%;bottom:1%;transform:translateX(-50%);
+    width:260px;height:36px;pointer-events:none;z-index:0;
+  }
+  .sc-portal-rings span{
+    position:absolute;left:50%;top:50%;border-radius:50%;
+    border:1.5px solid rgba(184,69,90,0.85);
+    box-shadow:0 0 12px 2px rgba(184,69,90,0.6);
+    transform:translate(-50%,-50%);
+  }
+  .sc-portal-rings span:nth-child(1){width:100px;height:14px;}
+  .sc-portal-rings span:nth-child(2){width:180px;height:24px;border-color:rgba(184,69,90,0.55);box-shadow:0 0 10px 1px rgba(184,69,90,0.4);}
+  .sc-portal-rings span:nth-child(3){width:260px;height:36px;border-color:rgba(184,69,90,0.3);box-shadow:0 0 8px 1px rgba(184,69,90,0.25);}
+
+  .sc-viewport{
+    position:relative;z-index:2;width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+    perspective:1600px;
+  }
+  .sc-track{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;width:100%;padding:0 4vw;}
+  .sc-card{
+    flex:0 0 auto;width:250px;aspect-ratio:3/4.3;
+    perspective:1600px;
+  }
+  .sc-card-inner{
+    position:relative;width:100%;height:100%;
+    transition:transform 0.9s cubic-bezier(.22,1,.36,1);
+    transform-style:preserve-3d;
+  }
+  .sc-card.is-flipped .sc-card-inner{transform:rotateY(180deg);}
+  .sc-card-face{
+    position:absolute;inset:0;width:100%;height:100%;
+    border-radius:18px;overflow:hidden;
+    border:1px solid rgba(240,223,201,0.22);
+    box-shadow:0 25px 60px rgba(0,0,0,0.55);
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;
+  }
+  .sc-card-front{
+    align-items:center;justify-content:center;position:relative;
+  }
+  .sc-card-front .art{position:absolute;inset:0;width:100%;height:100%;}
+  .sc-card-front .art::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.15);}
+  .art-inclusivity{background:linear-gradient(150deg,#241014,#0d0507 75%);}
+  .art-inclusivity .ring{position:absolute;border-radius:50%;border:2px solid;top:50%;left:50%;transform:translate(-50%,-50%);}
+  .art-inclusivity .r1{width:42%;height:42%;border-color:#c1793f;margin-left:-14%;}
+  .art-inclusivity .r2{width:42%;height:42%;border-color:#f0dfc9;opacity:0.85;}
+  .art-inclusivity .r3{width:42%;height:42%;border-color:#7c1a28;margin-left:14%;}
+  .art-provocative{background:linear-gradient(155deg,#160709,#0d0507 70%);}
+  .art-provocative .slash{position:absolute;top:-10%;left:38%;width:26%;height:130%;
+    background:linear-gradient(180deg,#7c1a28,#c1793f 60%,#7c1a28);transform:rotate(18deg);}
+  .art-humming{background:linear-gradient(160deg,#301218,#4a1c24 55%,#160709);}
+  .art-humming .wave{position:absolute;left:50%;top:50%;width:70%;height:70%;border:1px solid rgba(240,223,201,0.4);border-radius:50%;transform:translate(-50%,-50%) scale(0.5);}
+  .art-humming .w2{width:100%;height:100%;transform:translate(-50%,-50%) scale(0.7);border-color:rgba(240,223,201,0.25);}
+  .art-humming .w3{width:130%;height:130%;transform:translate(-50%,-50%) scale(0.9);border-color:rgba(240,223,201,0.14);}
+  .art-hermes{background:linear-gradient(150deg,#241014,#0d0507 75%);}
+  .art-hermes .frame{position:absolute;inset:16%;border:1px solid #c1793f;}
+  .art-hermes .frame::before{content:"";position:absolute;inset:14%;border:1px solid rgba(240,223,201,0.4);}
+  .art-costume{background:linear-gradient(160deg,#241014,#0d0507 75%);}
+  .art-costume .rack{position:absolute;left:16%;right:16%;top:22%;height:2px;background:#c1793f;}
+  .art-costume .hook{position:absolute;top:22%;left:50%;width:38%;height:58%;transform:translateX(-50%);
+    background:linear-gradient(180deg,#5c2530,#1d0d10 85%);border-radius:0 0 40% 40%/0 0 55% 55%;}
+  .art-star{background:linear-gradient(160deg,#2a0f14,#0d0507 75%);}
+  .art-star .beam{position:absolute;top:50%;left:50%;width:2px;height:64%;background:linear-gradient(#c1793f,transparent 80%);
+    transform-origin:center;}
+  .art-star .b1{transform:translate(-50%,-50%) rotate(0deg);}
+  .art-star .b2{transform:translate(-50%,-50%) rotate(45deg);}
+  .art-star .b3{transform:translate(-50%,-50%) rotate(90deg);}
+  .art-star .b4{transform:translate(-50%,-50%) rotate(135deg);}
+  .art-star .core{position:absolute;top:50%;left:50%;width:14%;height:14%;border-radius:50%;
+    background:radial-gradient(circle,#f0dfc9,#7c1a28 70%,transparent 100%);transform:translate(-50%,-50%);}
+  .art-diamond{background:linear-gradient(160deg,#28111a,#0d0507 75%);}
+  .art-diamond .dia{position:absolute;top:50%;left:50%;border:1.5px solid;
+    transform:translate(-50%,-50%) rotate(45deg);}
+  .art-diamond .d1{width:46%;height:46%;border-color:#c1793f;}
+  .art-diamond .d2{width:30%;height:30%;border-color:#f0dfc9;opacity:0.7;}
+  .art-diamond .d3{width:14%;height:14%;border-color:#7c1a28;background:#7c1a28;}
+  .art-zigzag{background:linear-gradient(160deg,#22101a,#0d0507 75%);}
+  .art-zigzag svg{position:absolute;inset:0;width:100%;height:100%;}
+  .sc-card-front .sc-front-label{
+    position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:1;
+    font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
+  }
+  .sc-card-back{
+    transform:rotateY(180deg);
+    background:rgba(255,255,255,0.04);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  }
+  .sc-card-imgbox{width:100%;aspect-ratio:4/3;overflow:hidden;flex:0 0 auto;background:#1a0a0d;}
+  .sc-card-imgbox img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sc-card-caption{
+    position:relative;z-index:1;padding:14px 16px;flex:1 1 auto;
+    background:rgba(20,9,12,0.4);
+    border-top:1px solid rgba(240,223,201,0.15);
+    overflow-y:auto;
+  }
+  .sc-cap-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .sc-cap-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--cream);letter-spacing:0.01em;}
+  .sc-cap-page{font-size:0.64rem;color:var(--muted);flex-shrink:0;letter-spacing:0.05em;}
+  .sc-cap-desc{font-size:0.72rem;line-height:1.6;color:var(--muted);margin:8px 0 10px;}
+  .sc-cap-loc{display:flex;align-items:center;gap:6px;font-size:0.64rem;color:var(--muted);letter-spacing:0.03em;}
+
+  @media (max-width: 900px){
+    #section-showcase3d{min-height:auto;padding:60px 0;}
+    .sc-track{gap:20px;}
+    .sc-card{width:150px;}
+  }
+  .detail-boxes-row{
+    grid-column:1/-1;max-width:none;margin-top:0px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  }
+  .detail-boxes-row:empty{display:none;margin-top:0;}
+  .detail-boxes-row .detail-box{width:auto;}
+
+  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px;align-items:start;}
+  .gallery.row-layout{display:flex;flex-wrap:nowrap;}
+  .g-item-caption{
+    font-weight:600;color:var(--cream);text-align:center;margin-top:0px;margin-bottom:15px;font-size:0.95rem;
+  }
+  .gallery.row-layout .g-item{flex:1 1 0;min-width:0;}
+  .gallery .g-item{
+    aspect-ratio:4/3;background:var(--bg-panel);border:1px solid var(--line);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;text-align:center;padding:16px;
+    overflow:hidden;
+  }
+  .gallery.cols-3{grid-template-columns:repeat(3,1fr);}
+  .gallery.cols-1{grid-template-columns:1fr;}
+  .gallery .g-item.has-image{padding:0;border:none;background:none;}
+  .gallery .g-item:has(.g-item-caption){flex-direction:column;overflow:visible;}
+  .gallery .g-item:has(.g-item-caption) video,
+  .gallery .g-item:has(.g-item-caption) img{flex:0 0 auto;}
+  .gallery .g-item.wide{grid-column:span 2;aspect-ratio:16/9;}
+  .gallery .g-item.auto-wide{grid-column:span 2;aspect-ratio:auto;}
+  .gallery .g-item.square{aspect-ratio:1/1;}
+  .gallery .g-item.portrait{aspect-ratio:2/3;}
+  .gallery .g-item.portrait img{object-fit:contain;background:var(--bg-panel);}
+  .gallery .g-item.landscape{aspect-ratio:2/1;}
+  .gallery .g-item.landscape img{object-fit:cover;}
+  .gallery .g-item.auto{aspect-ratio:auto;}
+  .gallery .g-item.auto img{width:100%;height:auto;object-fit:contain;display:block;}
+  .gallery .g-item.auto video{width:100%;height:auto;object-fit:contain;display:block;}
+  .gallery .g-item.auto-wide img,.gallery .g-item.auto-wide video{width:100%;height:auto;object-fit:contain;display:block;}
+  .gallery .g-item img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery .g-item video{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery .g-item .embed-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#000;}
+  .gallery .g-item .embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .yt-facade{cursor:pointer;background:#000;}
+  .yt-logo{position:absolute;top:50%;left:50%;width:78px;height:55px;transform:translate(-50%,-50%);z-index:2;transition:transform .2s ease;filter:drop-shadow(0 4px 14px rgba(0,0,0,0.45));}
+  .yt-facade:hover .yt-logo{transform:translate(-50%,-50%) scale(1.1);}
+  @media (max-width:640px){.yt-logo{width:58px;height:41px;}}
+
+  .next-project{
+    border-top:1px solid var(--line);padding:70px 0;text-align:center;
+  }
+  .next-project-row{
+    display:flex;justify-content:center;align-items:center;gap:50px;flex-wrap:wrap;
+  }
+  .nav-arrow-link{
+    display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--cream);
+    transition:color .25s ease;
+  }
+  .nav-arrow-link:hover{color:var(--wine-light);}
+  .nav-arrow-label{
+    font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);
+  }
+  @media (max-width: 640px){
+    .next-project-row{gap:50px;}
+  }
+
+  @media (max-width: 760px){
+    .container{padding:0 24px;}
+    nav.container{padding:16px 24px;justify-content:center;gap:14px 22px;}
+    .nav-links{gap:16px;font-size:0.66rem;justify-content:center;width:100%;}
+    .hero h1{font-size:2.2rem;}
+    .process-gallery-group.side{flex-direction:column;}
+    .process-gallery-group.side .brief-gallery-caption{width:100%;}
+    .cover-headline .line1{font-size:34px;}
+    .cover-headline .line2{font-size:42px;}
+    .content-grid{grid-template-columns:1fr;gap:20px;}
+    .detail-box{width:calc(50% - 10px);}
+    .detail-boxes-row{grid-template-columns:1fr 1fr;}
+    .body-text.split-layout{flex-direction:column;}
+    .split-layout .frame-box{width:100%;}
+    .gallery{grid-template-columns:1fr;}
+    .brief-gallery{grid-template-columns:1fr;grid-column:1;max-width:none;}
+    .presskit-gallery{grid-template-columns:1fr;grid-column:1;max-width:none;}
+    .process-gallery{grid-column:1;max-width:none;}
+    .process-gallery .frame-box{height:auto;width:100%;}
+    .process-gallery .frame-box.auto{width:100%;}
+    .process-gallery .frame-box.auto img{width:100%;height:auto;}
+  }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox{
+    position:fixed;inset:0;z-index:2000;background:rgba(5,2,3,0.94);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;transition:opacity .3s ease;padding:40px;
+  }
+  .lightbox.open{opacity:1;visibility:visible;}
+  .lightbox-content{
+    max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;
+  }
+  .lightbox-content img,.lightbox-content video{
+    max-width:90vw;max-height:88vh;width:auto;height:auto;object-fit:contain;
+    border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .lightbox-close{
+    position:absolute;top:24px;right:32px;z-index:2001;
+    width:44px;height:44px;border-radius:50%;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(240,223,201,0.25);
+    color:var(--cream);font-size:1.8rem;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;opacity:0.9;transition:opacity .2s ease,background .2s ease;
+  }
+  .lightbox-close:hover{opacity:1;background:rgba(255,255,255,0.16);}
+  .lightbox-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:2001;
+    width:52px;height:52px;border-radius:50%;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(240,223,201,0.25);
+    color:var(--cream);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;opacity:0.85;transition:opacity .2s ease,background .2s ease;
+  }
+  .lightbox-arrow:hover{opacity:1;background:rgba(255,255,255,0.16);}
+  .lightbox-arrow.lightbox-prev{left:24px;}
+  .lightbox-arrow.lightbox-next{right:24px;}
+  .lightbox-arrow[disabled]{opacity:0.25;cursor:default;pointer-events:none;}
+  @media (max-width:640px){
+    .lightbox-arrow{width:42px;height:42px;}
+    .lightbox-arrow.lightbox-prev{left:8px;}
+    .lightbox-arrow.lightbox-next{right:8px;}
+  }
+  .video-expand-btn{
+    position:absolute;top:12px;right:12px;z-index:5;
+    width:34px;height:34px;border-radius:50%;border:1px solid rgba(240,223,201,0.3);
+    background:rgba(20,9,12,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    color:var(--cream);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background .25s ease;
+  }
+  .video-expand-btn:hover{background:rgba(20,9,12,0.85);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a href="index.html" class="site-signature">Bhoomi Agarwal</a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="eyebrow" id="p-eyebrow">Project</div>
+    <h1 id="p-title">Project Title</h1>
+    <div class="subhead" id="p-subtitle">Subheading</div>
+  </section>
+
+  <div class="cover-wrap" id="p-cover-wrap">
+    <div class="cover-image" id="p-cover">Add a cover image for this project here</div>
+    <div class="cover-headline" id="p-cover-headline" style="display:none;">
+      <span class="line1" id="p-cover-headline-1"></span>
+      <span class="line2" id="p-cover-headline-2"></span>
+    </div>
+  </div>
+  <div class="corner-label" id="p-corner-label"></div>
+
+  <section id="section-showcase3d" style="display:none;">
+    <svg class="sc-doodle sc-doodle-scissors" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <circle cx="14" cy="42" r="6"/><circle cx="14" cy="18" r="6"/>
+      <path d="M19 22 L48 50 M19 38 L48 10"/>
+    </svg>
+    <svg class="sc-doodle sc-doodle-thread" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <circle cx="30" cy="24" r="15"/><circle cx="30" cy="24" r="4" fill="currentColor" stroke="none"/>
+      <path d="M20 44 Q30 38 18 34 Q6 30 22 24" fill="none"/>
+      <circle cx="22" cy="24" r="1.6" fill="currentColor" stroke="none"/>
+    </svg>
+    <svg class="sc-doodle sc-doodle-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 4 L23 17 L36 20 L23 23 L20 36 L17 23 L4 20 L17 17 Z"/>
+    </svg>
+    <svg class="sc-doodle sc-doodle-button" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4">
+      <circle cx="20" cy="20" r="15"/>
+      <circle cx="15" cy="15" r="1.6" fill="currentColor" stroke="none"/>
+      <circle cx="25" cy="15" r="1.6" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+      <circle cx="25" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+    </svg>
+    <div class="showcase3d-wrap">
+      <div class="showcase3d-text sc-glass" style="display:none;">
+        <span class="sc-num" id="sc-num">01</span>
+        <h2 class="sc-title" id="sc-title">Project Title</h2>
+        <p class="sc-desc" id="sc-desc">Description goes here.</p>
+        <a href="#" class="sc-link">View Project <span>&rarr;</span></a>
+      </div>
+      <div class="showcase3d-stage" id="sc-stage">
+        <div class="sc-portal-beams"></div>
+        <div class="sc-portal-rings">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="sc-hint">Click on a card to reveal the story</span>
+        <div class="sc-viewport" id="sc-viewport">
+          <div class="sc-track" id="sc-track"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-overview">
+    <div class="content-grid">
+      <h2 id="overview-heading">Overview</h2>
+      <div class="body-text">
+        <div class="placeholder" id="p-overview">Add a short overview of this project — what it is, and the idea behind it.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-research" style="display:none;">
+    <div class="content-grid">
+      <h2>Research</h2>
+      <div class="body-text">
+        <div class="placeholder" id="p-research"></div>
+      </div>
+      <div class="research-gallery" id="p-research-gallery"></div>
+    </div>
+  </section>
+
+  <section id="section-brief">
+    <div class="content-grid">
+      <h2>The Brief</h2>
+      <div class="body-text split-layout" id="p-brief-wrap">
+        <div class="frame-box" id="p-brief-frame">Add an image for this section</div>
+        <div class="split-text">
+          <div class="placeholder" id="p-brief">Add the brief or goal you were working towards — who it was for, and what problem it solved.</div>
+        </div>
+      </div>
+      <div class="brief-gallery" id="p-brief-gallery"></div>
+      <div class="body-text" id="p-brief-after-wrap" style="grid-column:1/-1;margin:24px auto 0;max-width:640px;display:none;">
+        <div class="placeholder" id="p-brief-after"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-process">
+    <div class="content-grid">
+      <h2 id="process-heading">Process</h2>
+      <div class="process-gallery" id="p-process-gallery"></div>
+      <div class="body-text" id="p-process-text-wrap">
+        <div class="frame-box" id="p-process-frame" style="display:none;">Add an image for this section</div>
+        <div class="split-text" id="p-process-split-text">
+          <div class="placeholder" id="p-process">Add your process here — research, moodboarding, styling decisions, iterations.</div>
+        </div>
+      </div>
+      <div class="detail-boxes" id="p-detail-boxes"></div>
+      <div class="body-text" id="p-process-after-wrap" style="grid-column:1/-1;margin:24px auto 0;max-width:640px;display:none;">
+        <div class="placeholder" id="p-process-after"></div>
+      </div>
+      <div class="detail-boxes-row" id="p-detail-boxes-2"></div>
+      <div class="body-text" id="p-process-after-2-wrap" style="grid-column:1/-1;margin:24px auto 0;max-width:640px;display:none;">
+        <div class="placeholder" id="p-process-after-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-budget" style="display:none;">
+    <div class="content-grid">
+      <h2>Budget</h2>
+      <div class="body-text" id="p-budget" style="max-width:none;"></div>
+    </div>
+  </section>
+
+  <section id="section-exhibition" style="display:none;">
+    <div class="content-grid">
+      <h2>Exhibition Details</h2>
+      <div class="exhibition-list" id="p-exhibition"></div>
+    </div>
+  </section>
+
+  <section id="section-presskit" style="display:none;">
+    <div class="content-grid">
+      <h2>Press Kit</h2>
+      <div class="body-text" id="p-presskit"></div>
+      <div class="presskit-gallery" id="p-presskit-gallery"></div>
+    </div>
+  </section>
+
+  <section id="section-gallery">
+    <div class="content-grid">
+      <h2 id="gallery-heading">Gallery</h2>
+      <div class="body-text" style="max-width:none;">
+        <div class="gallery" id="p-gallery">
+          <div class="g-item">Add image 1</div>
+          <div class="g-item">Add image 2</div>
+          <div class="g-item">Add image 3</div>
+          <div class="g-item">Add image 4</div>
+        </div>
+        <div id="p-gallery-caption" style="display:none;font-weight:600;color:var(--cream);text-align:center;margin-top:5px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-outcome">
+    <div class="content-grid">
+      <h2>Insights</h2>
+      <div class="body-text">
+        <div class="placeholder" id="p-outcome">Add the insights or results of this project — what it achieved, and what you learned.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="next-project">
+  <div class="container next-project-row">
+    <a href="#" id="prev-link" class="nav-arrow-link">
+      <span class="nav-arrow-label">Previous</span>
+      <svg width="34" height="20" viewBox="0 0 34 20" fill="none"><path d="M33 10H1M1 10L9 2M1 10L9 18" stroke="currentColor" stroke-width="1.3"/></svg>
+    </a>
+    <a href="#" id="next-link" class="nav-arrow-link">
+      <span class="nav-arrow-label">Next</span>
+      <svg width="34" height="20" viewBox="0 0 34 20" fill="none"><path d="M1 10H33M33 10L25 2M33 10L25 18" stroke="currentColor" stroke-width="1.3"/></svg>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Project data — pulled from the Portfolio grid on the homepage.
+  // Edit the "overview", "brief", "process", and "outcome" fields below
+  // with your real project write-ups; everything else fills in automatically.
+  const projects = {
+    "humming-way": { title:"Coutureverse", subtitle:"Speculative 2030", category:"Experiential Marketing", cover:"images/cover-humming-way.png", cornerLabel:"Hypothetical Experiential Retail Experience",
+      overview:[
+        "The brand is a contemporary fashion label rooted in nature, craftsmanship, and intricate embroidery. Its design language draws inspiration from flowers, leaves, birds, insects, organic forms, landscapes, and natural textures, translating these elements into detailed hand embroidery and surface ornamentation."
+      ],
+      brief:[
+        "By 2030, luxury retail is no longer a place — it's an experience that thinks, feels, and evolves with you. Luxury retail has dissolved the boundary between nature and couture.",
+        "The Botanical Couture Lab is a living, breathing environment where fashion grows, evolves, and responds — just like the ecosystem it is inspired by. Guests enter a space that feels less like a store and more like an enchanted atelier hidden inside a forest. Drapes mimic the depth of old-growth canopies, while the ground is softened with moss, wild foliage, and textured greenery. A sculpted sofa sits like a relic of quiet luxury amid nature, inviting guests to pause, feel, and reconnect."
+      ],
+      process:[
+        "During our initial research, we observed that experiential retail in fashion is increasingly growing. Brands are moving beyond products to create more immersive and meaningful retail experiences. However, many brands still do not fully translate their heritage, craftsmanship, stories, and cultural identity into physical spaces. Retail environments often remain commercially focused, with limited use of sensory design, materials, craft, and cultural references."
+      ],
+      processImage:"images/process-coutureverse-chart.jpg",
+      gallery:[
+        "images/gallery-coutureverse-1.png",
+        "images/gallery-coutureverse-2.png",
+        {src:"images/gallery-coutureverse-portrait-1.jpg", shape:"portrait"},
+        {src:"images/gallery-coutureverse-portrait-2.jpg", shape:"portrait"},
+        {src:"images/gallery-coutureverse-3.png", shape:"wide"},
+        {src:"images/gallery-coutureverse-4.jpg", shape:"wide"},
+        {src:"images/coutureverse-film.mp4", type:"video", shape:"auto-wide"}
+      ],
+      outcome:[
+        "This project enabled us to explore how brand heritage, craftsmanship, and narrative can be translated into immersive spatial experiences. It revealed how thoughtful spatial design can reinforce brand identity, foster deeper consumer engagement, and build emotional connections, transforming retail environments from transactional spaces into distinctive and memorable expressions of the brand."
+      ]
+    },
+    "inclusivity-diversity": { title:"Inclusivity and Diversity", subtitle:"Fashion Editorial", category:"Styling", cover:"images/cover-inclusivity-diversity.png",
+      hideSections:['overview'],
+      coverHeadline:{line1:"Beyond", line2:"Him/Her"},
+      brief:[
+        "This indoor editorial frames non-binary existence not as a statement that asks to be understood, but as a condition that simply is. The subjects do not explain themselves, perform difference, or seek validation. Their presence—carried through posture, stillness, and intent—expands the idea of belonging without negotiation.",
+        "While rooted in the contemporary reality of non-binary lives, the editorial subtly draws from India's pre-colonial understanding of gender as plural, functional, and spiritually grounded. Gender here is not framed as modern resistance or Western visibility politics, but as something historically known, disrupted, and now calmly reclaimed. The body becomes a living archive—holding memory not through overt symbols, but through balance, composure, and authority."
+      ],
+      process:[
+        "The process began with research into non-binary identity and India's pre-colonial understanding of gender plurality. This informed a concept centred on quiet existence, belonging, and self-assurance rather than visibility or explanation. We explored stillness, balance, and authority as key visual expressions of identity. Styling focused on fluid silhouettes, layered forms, and subtle textures without reinforcing conventional gender codes."
+      ],
+      galleryPortrait:true,
+      gallery:[
+        "images/gallery-inclusivity-1.jpg",
+        "images/gallery-inclusivity-2.jpg",
+        "images/gallery-inclusivity-3.jpg",
+        "images/gallery-inclusivity-4.jpg"
+      ],
+      outcome:[
+        "This project taught us how visual storytelling can communicate complex ideas of identity without relying on explicit representation. We learned to use styling, composition, body language, space, and subtle visual cues to create a meaningful narrative, while approaching sensitive cultural and social themes with research, nuance, and intention."
+      ]
+    },
+    "provocative": { title:"Provocative", subtitle:"Fashion Editorial", category:"Styling", cover:"images/cover-provocative.jpg",
+      overview:[
+        "This project was created in collaboration with LIVETOTELL, a jewellery brand founded by Sukriti, rooted in storytelling through meaningful design. Launched during COVID, the brand focuses on mindful craftsmanship, supporting local karigars and transforming emotions, experiences, and personal narratives into inclusive, empowering jewellery."
+      ],
+      brief:[
+        "Indian culture has long existed within a fragile tension between devotion and dread — where rituals are often performed not out of pure faith, but out of an inherited fear of the unknown. What begins as belief slowly transforms into habit, into protection, into something almost instinctive. Tantra, witchcraft, curses, and symbols of warding off evil are not distant, forgotten practices; they exist in the present, quietly woven into everyday life, passed down without question.",
+        "In this landscape, fear does not always announce itself loudly. It settles into the mundane — a glance at a black thread tied around a wrist, a lemon and chillies hung at a doorway, a prayer whispered not out of devotion but precaution. Protection becomes ritual, and ritual becomes routine."
+      ],
+      process:[
+        "The research began by exploring Indian beliefs, rituals, and superstitions surrounding protection and fear. It involved studying Tantra, witchcraft, curses, evil-eye symbols, and warding rituals, along with observing how these practices appear in contemporary everyday life. Visual and cultural references were collected from objects, symbols, oral traditions, and personal observations, helping identify the connection between fear, belief, ritual, and routine."
+      ],
+      processImage:"images/process-provocative-chart.png",
+      galleryPortrait:true,
+      gallery:[
+        "images/gallery-provocative-1.jpg",
+        "images/gallery-provocative-2.jpg",
+        "images/gallery-provocative-3.jpg",
+        "images/gallery-provocative-4.jpg",
+        {src:"images/provocative-film.mp4", type:"video", shape:"auto-wide"}
+      ],
+      outcome:[
+        "Fear and belief shape everyday behaviour, often turning inherited traditions into unconscious routines. The research revealed that rituals of protection are not only religious practices but also cultural expressions of memory, identity, and collective belief. We also understood how ordinary objects and symbols can carry deep emotional and psychological meanings."
+      ]
+    },
+    "coastale": { title:"Ember", subtitle:"Luxury Experience", category:"Experiential Marketing", cover:"images/cover-coastale.jpg", cornerLabel:"Hypothetical Seashore Experience",
+      briefImage:"images/brief-coastale.jpg",
+      overview:[
+        "Born from the poetry of nature, our brand transforms elemental beauty into timeless luxury. Inspired by water, fire, wind, and earth, each piece reflects organic forms, subtle textures, and the movement of nature.",
+        "Rooted in craftsmanship and quiet luxury, our jewellery is intimate, enduring, and deeply personal. Created for dreamers and romantics, every piece is more than an adornment—it is an emotional artifact that captures a feeling, memory, and connection to the natural world."
+      ],
+      brief:[
+        "A dreamy, sea-inspired luxury jewellery experience where guests discover jewellery through the fluid beauty of the shoreline. A minimal white cabana, flowing drapes, sunlit textures, and sculptural wave-inspired displays create a tranquil yet refined atmosphere.",
+        "Blue, silver, and sand tones, combined with ocean-mist fragrance, soft acoustic music, and golden-hour lighting, create a multisensory escape. An AI-powered digital mirror lets guests virtually try on jewellery, capturing movement, light, and reflection to show how each piece comes alive on the body."
+      ],
+      briefGallery:[
+        "images/brief-coastale-1.jpg",
+        "images/brief-coastale-2.jpg",
+        "images/brief-coastale-3.jpg"
+      ],
+      briefAfter:[
+        "The collection draws inspiration from the sea and marine life, featuring delicate shells, flowing waves, jellyfish, seahorses, dolphins, and starfish. Gold detailing, pearls, crystals, and shades of ocean blue, aqua, and soft pastel tones create an elegant, dreamlike aesthetic that translates the beauty of the coastline into wearable jewellery.",
+        "<strong>Location</strong><br>Ashwem Beach in North Goa offers a serene yet premium setting, attracting a luxury-oriented crowd and supported by strong hospitality, boutique resorts, and event infrastructure. The event is planned for 26–27 December 2026, 11 AM–8 PM, with an estimated 2,500–4,000 footfall."
+      ],
+      process:[
+        "I created this model using SketchUp, developing the space digitally to explore its overall structure, layout, proportions, and visual elements. The 3D model helped me understand how the different components come together and allowed me to experiment with the design before moving towards the final outcome."
+      ],
+      processGallery:[
+        "images/process-coastale-1.jpg",
+        "images/process-coastale-2.jpg",
+        "images/process-coastale-3.jpg"
+      ],
+      galleryLandscape:true,
+      galleryCols:1,
+      gallery:[
+        "images/gallery-coastale-1.jpg",
+        "images/gallery-coastale-2.jpg",
+        "images/gallery-coastale-3.jpg",
+        "images/gallery-coastale-4.jpg"
+      ],
+      outcome:[
+        "This project helped in understanding how spaces can go beyond physical limitations to create immersive and interactive brand experiences. It developed an understanding of translating brand identity into pop-ups through storytelling, motion, and spatial design, while exploring how interactivity enhances consumer engagement and emotional connection."
+      ]
+    },
+    "hermes": { title:"Magicsimsim", subtitle:"The Art of Victory", category:"Experiential Marketing", cover:"images/cover-magicsimsim.jpg", coverAspect:"2400/1056", cornerLabel:"Hypothetical Project — Experiential Strategy for Magicsimsim", processLabel:"Details",
+      overview:[
+        "Magicsimsim Art is a contemporary craft-led brand that celebrates India's artistic heritage through intricate hand-embroidered, gemstone-embellished, and culturally inspired artworks. Every piece is created with meticulous detail, blending age-old techniques with modern aesthetics to produce art that feels timeless, luxurious, and deeply rooted in tradition.",
+        "Magicsimsim Art was founded in August 2020 by the husband-wife duo Varun Kumar and Simi Biswas."
+      ],
+      research:[
+        "<strong>Target Audience</strong><br>Affluent individuals, art collectors, and interior designers seeking luxurious, handcrafted and culturally inspired décor that combines Indian heritage with contemporary design.",
+        "<strong>SDG 11 – Sustainable Cities &amp; Communities</strong><br>Supports the preservation of India's traditional crafts and cultural heritage through techniques such as aari and zardozi, contributing to the protection of intangible cultural heritage.",
+        "<strong>SDG 12 – Responsible Consumption &amp; Production</strong><br>Promotes slow, mindful production through handcrafted techniques, durable materials, and long-lasting artworks, encouraging conscious consumption and reducing waste."
+      ],
+      researchGallery:["images/research-magicsimsim-1.jpg"],
+      brief:[
+        "Karnataka's strong craft heritage, royal aesthetic, and luxury tourism closely align with Magicsimsim's identity. Mysore Dasara offers access to audiences interested in Indian heritage, craftsmanship, art, and premium cultural experiences, making it ideal for pop-ups, collaborations, and showcasing handcrafted artworks.",
+        "It is an immersive art collaboration concept between Magicsimsim Art and Mysore Palace, inspired by the grandeur of Mysore Dasara. The project reinterprets royal heritage through contemporary handcrafted textile art, drawing from the Golden Throne, Ambari procession, royal silks, and temple motifs. Using techniques such as aari, zardozi, gilt thread, and gemstone embellishment, the artworks narrate themes of victory, devotion, and royal splendour, connecting Karnataka's rich heritage with modern craftsmanship."
+      ],
+      briefGalleryPortrait:true,
+      briefGalleryCaptions:true,
+      briefGallery:[
+        {src:"images/brief-magicsimsim-1.jpg", caption:"<strong>The Final Flame</strong>Panjina Kavayatthu is a spectacular torchlight parade held as the grand finale of Mysuru Dasara celebrations. The glowing flames against the night sky create a dramatic display of discipline, bravery, and royal tradition, marking the powerful conclusion of the Dasara festivities."},
+        {src:"images/brief-magicsimsim-2.jpg", caption:"<strong>The Sacred Steps of Stories</strong>A traditional display of dolls and figurines arranged by families, representing cultural stories and social themes."},
+        {src:"images/brief-magicsimsim-3.jpg", caption:"<strong>The Royal March</strong>This painting portrays the grandeur of Jamboo Savari, the iconic procession held during the celebrations of Mysuru Dasara. At the center is a majestic elephant adorned with intricate ornaments and carrying the golden Ambari (howdah) that traditionally bears the idol of Goddess Chamundeshwari."}
+      ],
+      processGallery:[],
+      process:[
+        "Magicsimsim Art × Mysore Palace — An immersive celebration of craft, heritage &amp; Dasara."
+      ],
+      detailBoxes:[
+        "<strong>The official poster reveal for the Magicsimsim × Mysore Palace collaborative campaign is scheduled for July 15.</strong>This date marks the first public reveal of the project's visual identity and heritage-inspired concept, building early excitement and media interest around the luxury cultural collaboration.",
+        "<strong>(July 25 – August 5) — BTS + Storytelling Content Drop</strong>On July 25, Magicsimsim will begin the second phase of pre-launch engagement by releasing a curated set of behind-the-scenes videos, social storytelling content, press notes, and craft-heritage previews.",
+        "<strong>August 10 — Teaser Release</strong>This is the mystery-building moment.<br>&bull; Show close-up details of embroidery<br>&bull; Hint at Mysore Dasara symbolism<br>&bull; Reveal glimpses of palace-inspired motifs",
+        "<strong>August 15 — Official Announcement</strong>On August 15, 2026, Magicsimsim will release the campaign's official key visuals and publicly confirm the exhibition name and dates for the Mysore Palace collaboration.",
+        "<strong>September 1 — Installation, Setup &amp; Palace Approvals</strong>This phase focuses on physically bringing the Magicsimsim × Mysore Palace exhibition to life while ensuring compliance with heritage and safety regulations.",
+        "<strong>September 25 — VIP Preview Night</strong>This exclusive event will serve as the first official unveiling of the Magicsimsim × Mysore Palace exhibition. Designed to celebrate the collaboration between heritage and contemporary luxury craft, the VIP Preview Night will offer guests a curated, immersive experience of the exhibition before it opens to the public.",
+        "<strong>Public Exhibition – September 28 – October 7</strong>The public exhibition will open immediately after the VIP Preview Night, allowing general audiences to experience the Magicsimsim × Mysore Palace collaboration. The dates align with the Mysore Dasara period, ensuring maximum visibility and visitor engagement."
+      ],
+      processAfter:[
+        "<strong>Food &amp; Beverage – Collab Based</strong>"
+      ],
+      detailBoxes2:[
+        "<strong>Starters</strong>&bull; Mini Mysore masala dosas or pancakes with spiced chutneys<br>&bull; Baby idlis with saffron or coconut chutney<br>&bull; Paneer or mushroom skewers with aromatic herbs<br>&bull; Mini Uttapams with tomato-onion topping<br>&bull; Stuffed mini bell peppers or cherry tomatoes",
+        "<strong>Finger Foods / Small Plates</strong>&bull; Savory pastries with regional spices (Mysore style samosas, mini kachoris)<br>&bull; Sweet &amp; savory tartlets with mild Mysore spices<br>&bull; Cheese &amp; dry fruit platters (cashews, almonds, figs – in line with luxury)",
+        "<strong>Beverages</strong>&bull; Filter coffee shots (served in small glass cups)<br>&bull; Herbal teas (chamomile, tulsi, masala chai)<br>&bull; Fresh fruit juices / mocktails inspired by Dasara flavors (mango, pomegranate, rose)<br>&bull; Optional: Sparkling water / premium soft drinks",
+        "<strong>Desserts (Miniature / Bite-Sized)</strong>&bull; Mysore Pak cubes (elegant plating, small size)<br>&bull; Mini coconut or cardamom ladoos<br>&bull; Chocolate–saffron fusion bites<br>&bull; Fruit skewers with royal presentation"
+      ],
+      processAfter2:[
+        "<strong>VIP's in Preview Night</strong>",
+        "&bull; <strong>Gaurav Ogale</strong> — An independent Indian visual artist, artistic director, and multimedia storyteller.<br>&bull; <strong>Amit Ambala</strong> — Highly celebrated contemporary Indian artist, author, and art collector based in Ahmedabad, Gujarat.<br>&bull; <strong>Malika Amin</strong> — Art collector and patron known for her appreciation and support of contemporary Indian art and culture.<br>&bull; <strong>Kiran Nadar</strong> — Prominent Indian art collector and philanthropist, founder of the Kiran Nadar Museum of Art (KNMA).<br>&bull; <strong>Rhea Kuruvilla</strong> — Art and culture professional associated with contemporary art, curation, and creative practices.<br>&bull; <strong>Harsh Goenka</strong> — Indian business leader and art collector, known for supporting Indian art, culture, and creative initiatives."
+      ],
+      galleryLandscape:true,
+      galleryLabel:"Brochure",
+      outcome:[
+        "Through this assignment, I understood how heritage, craftsmanship, and contemporary art can come together to create a meaningful brand experience. Researching Magicsimsim Art and Karnataka helped me understand the value of traditional techniques such as aari and zardozi, and how they can be presented in a modern, luxury context.",
+        "I also learned that an experiential project is not only about displaying products—it is about creating a story and emotional connection with the audience. By connecting Magicsimsim with Mysore Dasara and its royal heritage, I explored how cultural narratives can be transformed into a visual and immersive experience."
+      ],
+      gallery:[{src:"images/gallery-magicsimsim-square-1.jpg", shape:"auto"}, {src:"images/gallery-magicsimsim-square-2.jpg", shape:"auto"}],
+      exhibitionDetails:[
+        {label:"Location", value:"Mysore Palace"},
+        {label:"Date", value:"September 28 – October 7"},
+        {label:"Time", value:"10:00 AM – 6:00 PM"},
+        {label:"Expected Footfall", value:"1000+"}
+      ],
+      budget:[
+        "<strong>Total Budget</strong> — ₹70,00,000",
+        "<table class=\"budget-table\"><tr><td>Official poster reveal – 1,50,000</td><td>Bts + Storytelling – 1,50,000</td><td>Teaser Release – 1,00,000</td><td>Official Announcement – 1,70,000</td></tr><tr><td>Booking Fee of Palace – 26,00,000</td><td>Palace Approval – 2,10,000</td><td>Vip Preview Night (Decor, Lighting, Food &amp; Beverage) – 7,60,000</td><td>Decor for 13 days – 6,00,000</td></tr><tr><td>Lighting for 13 days – 2,00,000</td><td>Food &amp; Beverage for 5 days – 2,00,000</td><td>Invites for Vip (physical) – 2,00,000</td><td>Delivery charges of invites and press kit – 40,000</td></tr><tr><td>Press Kit – 5,00,000</td><td>Staffing &amp; Event Management (Event coordinators, ushers, security staff, technical crew) – 3,00,000</td><td>Security &amp; Heritage Compliance – 1,50,000</td><td>Transportation &amp; Logistics – 2,00,000</td></tr><tr><td>Insurance / Risk Coverage – 1,50,000</td><td>Influencer fees – 1,00,000</td><td>Photography / Videography for Event Days – 1,50,000</td><td>Unexpected palace requirements – 70,000</td></tr></table>"
+      ]
+    },
+    "couture-grand-prix": { title:"The Couture Grand Prix", subtitle:"Luxury Gamification", category:"Fashion Future", cover:"images/cover-couture-grand-prix.jpg", cornerLabel:"Conceptual Project — Hypothetical Brand Experience", processLabel:"Details", galleryLabel:"Outcome",
+      overview:[
+        "<strong>Papa Don't Preach X EA SPORTS™ F1®</strong>"
+      ],
+      brief:[
+        "<strong>\"Papa Don't Preach: The Couture Grand Prix\" is a luxury metaverse game that combines the bold couture of Papa Don't Preach by Shubhika with the high-speed world of EA SPORTS™ F1®.</strong>",
+        "Players take on the role of drivers and stylists, racing through runway-inspired tracks while collecting exclusive fashion pieces.",
+        "They customize their avatars and cars using couture elements and earn points based on both speed and style. As they progress, players unlock limited-edition digital collectibles (NFTs) that act as status symbols and offer real-world brand benefits.",
+        "The experience is built on luxury principles like exclusivity, scarcity, and personalization, turning fashion into something interactive, immersive, and earned rather than just worn."
+      ],
+      processGallery:[
+        {src:"images/details-couture-grand-prix-1.jpg", shape:"auto"},
+        {src:"images/details-couture-grand-prix-3.jpg", shape:"auto", caption:"<strong>The Atelier Garage</strong>Where players customize their avatar and car using couture elements like embroidery and bold colors."},
+        {src:"images/details-couture-grand-prix-4.jpg", shape:"auto", caption:"<strong>Pit Stops</strong>Where players customize and elevate their look or car."},
+        {src:"images/details-couture-grand-prix-5.jpg", shape:"auto", caption:"<strong>DRS Zones</strong>Speed boost zones - which also contain rare collectibles."},
+        {src:"images/details-couture-grand-prix-6.jpg", shape:"auto", caption:"<strong>Lap-based Challenges</strong>Where each lap unlocks new couture elements."},
+        {src:"images/details-couture-grand-prix-7.jpg", shape:"auto", lockRow:true, caption:"<strong>Paris</strong>Features elegant, high-fashion runway visuals and classic couture vibes."},
+        {src:"images/details-couture-grand-prix-8.jpg", shape:"auto", lockRow:true, caption:"<strong>Monaco</strong>Reflects luxury, speed, and exclusivity inspired by Formula 1 culture."},
+        {src:"images/details-couture-grand-prix-9.jpg", shape:"auto", lockRow:true, caption:"<strong>Mumbai</strong>Incorporates vibrant colors, Indian craftsmanship, and festive elements inspired by Papa Don't Preach."},
+        {src:"images/details-couture-grand-prix-10.jpg", shape:"auto", captionSide:true, caption:"<strong>The VIP Lounge</strong>Which is an exclusive space only unlocked by top players, reinforcing luxury access.<br>Inside the VIP Lounge, players can:<br>&bull; View and try on ultra-rare couture pieces before others<br>&bull; Access limited-edition NFT drops not available in the main game<br>&bull; Interact with a more premium environment with gold, glass, and high-end design aesthetics<br>&bull; Unlock special rewards and customization options"}
+      ],
+      detailBoxes:[
+        "<strong>GAME MECHANICS</strong>While racing in an F1-style environment, players experience elements like pit stops, speed boosts, and strategic turns.<br><br>During the race, couture collectibles are placed along the track—sometimes on risky curves, near speed zones, or around pit lanes—so players have to make quick decisions between maintaining speed or collecting fashion elements.<br><br>At the same time, they style their avatar and car using these collected items. So it's not just about finishing first—it's also about how well your look represents the brand's aesthetic. This creates a balance between performance and creativity, making the experience more engaging.",
+        "<strong>POINTS, REWARDS &amp; LEVELS</strong>The scoring system is based on three main factors:<br>Speed performance – how well you race<br>Style score – how well your look aligns with Papa Don't Preach's aesthetic<br>Collectibles – how many couture elements you find during gameplay<br><br>The game progresses through levels:<br>&bull; The First Stitch introduces the player to the system.<br>&bull; Runway Rush increases speed and styling complexity.<br>&bull; Monaco Couture Circuit is more competitive and exclusive.<br>&bull; And finally, The Grand Prix Gala, which is a VIP-only level.<br><br>This progression reflects how luxury works—access is earned, not given.",
+        "<strong>NFT &amp; DIGITAL LUXURY</strong>As players progress, they unlock limited-edition digital collectibles, or NFTs. These include couture race suits, statement helmets, and designer car skins inspired by the brand. These NFTs are not just visual—they act as status symbols, showing exclusivity and achievement.<br><br>They also connect to real-world benefits like:<br>&bull; Early access to new collections.<br>&bull; Invitations to events.<br>&bull; Special brand interactions.<br><br>So the digital experience extends into real-life luxury engagement."
+      ],
+      outcome:[
+        "This project deepened my understanding of how fashion, gaming, and digital experiences can converge to create innovative forms of brand engagement. I explored how customisation, gamification, exclusivity, and digital collectibles can translate luxury values into immersive virtual experiences, while encouraging self-expression, participation, and stronger consumer–brand connections beyond traditional retail."
+      ],
+      gallery:[
+        {src:"https://youtu.be/cls7uInZB4E", type:"embed", shape:"auto-wide", caption:"The Couture Grand Prix"},
+        {src:"images/couture-grand-prix-film.mp4", type:"video", shape:"auto-wide", caption:"Game Prototype made on Roblox"}
+      ],
+      galleryGap:40
+    },
+    "costume-stylist": { title:"Costume Stylist", subtitle:"Internship", category:"Internship", hideCover:true, galleryLabel:"",
+      showcase3d:{
+        num:"06",
+        title:"Costume Stylist",
+        desc:"An internship exploring costume styling for screen — building character-driven looks under real production timelines.",
+        images:["images/costume-song-1.jpg", "images/costume-song-2.jpg", "images/costume-song-3.jpg", "images/costume-song-4.jpg"],
+        items:[
+          {title:"T - Series Song - Naach Meri Naagin", desc:"Assisted with on-set styling for Paradox, Neelkamal Singh, and background dancers."},
+          {title:"T - Series Song - Seen", desc:"Assisted with on-set costume styling and coordination for Tanishk Bagchi's \"SEEN\" music video, including the featured cast."},
+          {title:"Song - Ishq Banjaara", desc:"Assisted with on-set costume styling and coordination for the music video \"Ishq Banjara,\" working with the lead cast and supporting artists."},
+          {title:"Zee - TV Promo - Chhoriyan Chali Gaon", desc:"Assisted with costume styling and coordination for the background dancers and supporting artists on set."}
+        ]
+      },
+      hideSections:['overview','brief','process','outcome','gallery']
+    }
+  };
+  const order = Object.keys(projects);
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id') || order[0];
+  const data = projects[id] || projects[order[0]];
+
+  document.getElementById('p-eyebrow').textContent = data.category + ' Project';
+  document.getElementById('p-title').textContent = data.title;
+  document.getElementById('p-subtitle').textContent = data.subtitle;
+  const coverEl = document.getElementById('p-cover');
+  const coverWrapEl = document.getElementById('p-cover-wrap');
+  coverWrapEl.style.display = data.hideCover ? 'none' : '';
+  const showcase3dEl = document.getElementById('section-showcase3d');
+  if (data.showcase3d) {
+    showcase3dEl.style.display = '';
+    const s = data.showcase3d;
+    const scImages = s.images;
+    const n = scImages.length;
+    const scTrack = document.getElementById('sc-track');
+
+    // Same abstract art patterns used on the homepage carousel, cycled across the cards
+    const scArts = [
+      '<div class="art art-diamond"><span class="dia d1"></span><span class="dia d2"></span><span class="dia d3"></span></div>',
+      '<div class="art art-zigzag"><svg viewBox="0 0 100 100" fill="none" stroke="#c1793f" stroke-width="1.4"><path d="M15 30 L35 55 L50 25 L65 55 L85 30"/><path d="M15 70 L35 45 L50 75 L65 45 L85 70" stroke="rgba(240,223,201,0.4)"/></svg></div>',
+      '<div class="art art-provocative"><span class="slash"></span></div>',
+      '<div class="art art-star"><span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span><span class="beam b4"></span><span class="core"></span></div>'
+    ];
+
+    scTrack.innerHTML = scImages.map(function(src, i){
+      const item = (s.items && s.items[i]) ? s.items[i] : null;
+      const label = item && item.title ? item.title : 'Look ' + String(i + 1).padStart(2, '0');
+      const loc = item && item.location ? item.location : '';
+      const desc = item && item.desc ? item.desc : (s.desc || '');
+      const pageNum = (i + 1) + '/' + n;
+      const art = scArts[i % scArts.length];
+      return '<div class="sc-card" data-idx="' + i + '">' +
+        '<div class="sc-card-inner">' +
+          '<div class="sc-card-face sc-card-front">' + art + '<span class="sc-front-label">' + String(i + 1).padStart(2, '0') + '</span></div>' +
+          '<div class="sc-card-face sc-card-back">' +
+            '<div class="sc-card-imgbox"><img src="' + src + '" alt="' + label + '"></div>' +
+            '<div class="sc-card-caption">' +
+              '<div class="sc-cap-row"><span class="sc-cap-title">' + label + '</span><span class="sc-cap-page">' + pageNum + '</span></div>' +
+              '<p class="sc-cap-desc">' + desc + '</p>' +
+              (loc ? '<div class="sc-cap-loc"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>' + loc + '</div>' : '') +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    const scCards = Array.from(scTrack.querySelectorAll('.sc-card'));
+    scCards.forEach(function(card){
+      card.addEventListener('click', function(){
+        card.classList.toggle('is-flipped');
+      });
+    });
+  } else {
+    showcase3dEl.style.display = 'none';
+  }
+  if (data.cover) {
+    coverEl.classList.add('has-image');
+    coverEl.innerHTML = '<img src="' + data.cover + '" alt="' + data.title + ' cover image">';
+  } else {
+    coverEl.classList.remove('has-image');
+    coverEl.textContent = 'Add a cover image for "' + data.title + '" here';
+  }
+  coverEl.style.aspectRatio = data.coverAspect || '';
+  document.getElementById('p-corner-label').textContent = data.cornerLabel || '';
+  const coverHeadlineEl = document.getElementById('p-cover-headline');
+  if (data.coverHeadline) {
+    coverHeadlineEl.style.display = '';
+    document.getElementById('p-cover-headline-1').textContent = data.coverHeadline.line1 || '';
+    document.getElementById('p-cover-headline-2').textContent = data.coverHeadline.line2 || '';
+  } else {
+    coverHeadlineEl.style.display = 'none';
+  }
+  document.getElementById('overview-heading').textContent = data.overviewLabel || 'Overview';
+  document.getElementById('gallery-heading').textContent = data.galleryLabel !== undefined ? data.galleryLabel : 'Gallery';
+  document.getElementById('process-heading').textContent = data.processLabel || 'Process';
+  const overviewEl = document.getElementById('p-overview');
+  if (data.overview) {
+    overviewEl.classList.remove('placeholder');
+    overviewEl.innerHTML = data.overview.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    overviewEl.classList.add('placeholder');
+    overviewEl.textContent = 'Add a short overview of this project — what it is, and the idea behind it.';
+  }
+
+  const researchSectionEl = document.getElementById('section-research');
+  const researchEl = document.getElementById('p-research');
+  const researchGalleryEl = document.getElementById('p-research-gallery');
+  if (data.research !== undefined) {
+    researchSectionEl.style.display = '';
+    const researchText = data.research.filter(function(t){ return t && t.trim(); });
+    if (researchText.length) {
+      researchEl.classList.remove('placeholder');
+      researchEl.innerHTML = researchText.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+    } else {
+      researchEl.classList.add('placeholder');
+      researchEl.textContent = 'Add your research findings, references, and supporting insights for this project.';
+    }
+  } else {
+    researchSectionEl.style.display = 'none';
+    researchEl.innerHTML = '';
+  }
+  if (data.researchGallery && data.researchGallery.length) {
+    researchGalleryEl.innerHTML = data.researchGallery.map(function(src, i){
+      if (!src) return '<div class="frame-box">Add image ' + (i + 1) + '</div>';
+      return '<div class="frame-box has-image"><img src="' + src + '" alt="' + data.title + ' research image ' + (i + 1) + '"></div>';
+    }).join('');
+  } else {
+    researchGalleryEl.innerHTML = '';
+  }
+
+  const exhibitionSectionEl = document.getElementById('section-exhibition');
+  const exhibitionEl = document.getElementById('p-exhibition');
+  if (data.exhibitionDetails && data.exhibitionDetails.length) {
+    exhibitionSectionEl.style.display = '';
+    exhibitionEl.innerHTML = data.exhibitionDetails.map(function(item){
+      return '<div class="ex-item"><span class="ex-label">' + item.label + '</span><span class="ex-value">' + item.value + '</span></div>';
+    }).join('');
+  } else {
+    exhibitionSectionEl.style.display = 'none';
+    exhibitionEl.innerHTML = '';
+  }
+
+  const budgetSectionEl = document.getElementById('section-budget');
+  const budgetEl = document.getElementById('p-budget');
+  if (data.budget !== undefined) {
+    budgetSectionEl.style.display = '';
+    const budgetText = (data.budget || []).filter(function(t){ return t && t.trim(); });
+    if (budgetText.length) {
+      budgetEl.classList.remove('placeholder');
+      budgetEl.innerHTML = budgetText.map(function(p){
+        return /^\s*<(table|div)/i.test(p) ? p : '<p>' + p + '</p>';
+      }).join('');
+    } else {
+      budgetEl.classList.add('placeholder');
+      budgetEl.textContent = 'Add the budget breakdown for this project.';
+    }
+  } else {
+    budgetSectionEl.style.display = 'none';
+    budgetEl.innerHTML = '';
+  }
+
+  const presskitSectionEl = document.getElementById('section-presskit');
+  const presskitEl = document.getElementById('p-presskit');
+  if (data.pressKit !== undefined) {
+    presskitSectionEl.style.display = '';
+    const pressKitText = (data.pressKit || []).filter(function(t){ return t && t.trim(); });
+    if (pressKitText.length) {
+      presskitEl.classList.remove('placeholder');
+      presskitEl.innerHTML = pressKitText.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+    } else {
+      presskitEl.classList.add('placeholder');
+      presskitEl.textContent = 'Add press kit details for this project.';
+    }
+  } else {
+    presskitSectionEl.style.display = 'none';
+    presskitEl.innerHTML = '';
+  }
+  const presskitGalleryEl = document.getElementById('p-presskit-gallery');
+  if (data.pressKitGallery && data.pressKitGallery.length) {
+    presskitGalleryEl.innerHTML = data.pressKitGallery.map(function(src, i){
+      if (!src) return '<div class="frame-box">Add image ' + (i + 1) + '</div>';
+      return '<div class="frame-box has-image"><img src="' + src + '" alt="' + data.title + ' press kit image ' + (i + 1) + '"></div>';
+    }).join('');
+  } else {
+    presskitGalleryEl.innerHTML = '';
+  }
+
+  const briefEl = document.getElementById('p-brief');
+  if (data.brief) {
+    briefEl.classList.remove('placeholder');
+    briefEl.innerHTML = data.brief.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    briefEl.classList.add('placeholder');
+    briefEl.textContent = 'Add the brief or goal you were working towards — who it was for, and what problem it solved.';
+  }
+  const briefWrapEl = document.getElementById('p-brief-wrap');
+  const briefFrameEl = document.getElementById('p-brief-frame');
+  if (data.briefImage) {
+    briefWrapEl.classList.add('split-layout');
+    briefFrameEl.style.display = '';
+    briefFrameEl.classList.add('has-image');
+    briefFrameEl.innerHTML = '<img src="' + data.briefImage + '" alt="' + data.title + ' brief image">';
+  } else {
+    briefWrapEl.classList.remove('split-layout');
+    briefFrameEl.style.display = 'none';
+    briefFrameEl.classList.remove('has-image');
+    briefFrameEl.textContent = 'Add an image for this section';
+  }
+  const briefGalleryEl = document.getElementById('p-brief-gallery');
+  if (data.briefGallery && data.briefGallery.length) {
+    const briefPortraitClass = data.briefGalleryPortrait ? ' portrait' : '';
+    const showCaptions = !!data.briefGalleryCaptions;
+    briefGalleryEl.innerHTML = data.briefGallery.map(function(item, i){
+      const isObj = item && typeof item === 'object';
+      const src = isObj ? item.src : item;
+      const caption = isObj ? item.caption : '';
+      const frameHtml = !src
+        ? '<div class="frame-box' + briefPortraitClass + '">Add image ' + (i + 1) + '</div>'
+        : '<div class="frame-box has-image' + briefPortraitClass + '"><img src="' + src + '" alt="' + data.title + ' brief image ' + (i + 1) + '"></div>';
+      if (!showCaptions) return frameHtml;
+      const captionHtml = caption
+        ? '<div class="brief-gallery-caption">' + caption + '</div>'
+        : '<div class="brief-gallery-caption placeholder">Add a caption explaining image ' + (i + 1) + '.</div>';
+      return '<div class="brief-gallery-item">' + frameHtml + captionHtml + '</div>';
+    }).join('');
+  } else {
+    briefGalleryEl.innerHTML = '';
+  }
+  const briefAfterWrapEl = document.getElementById('p-brief-after-wrap');
+  const briefAfterEl = document.getElementById('p-brief-after');
+  if (data.briefAfter) {
+    briefAfterWrapEl.style.display = '';
+    briefAfterEl.classList.remove('placeholder');
+    briefAfterEl.innerHTML = data.briefAfter.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    briefAfterWrapEl.style.display = 'none';
+  }
+  const processEl = document.getElementById('p-process');
+  const processTextWrapEl = document.getElementById('p-process-text-wrap');
+  if (data.process) {
+    processTextWrapEl.style.display = '';
+    processEl.classList.remove('placeholder');
+    processEl.innerHTML = data.process.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    processTextWrapEl.style.display = 'none';
+  }
+  const processFrameEl = document.getElementById('p-process-frame');
+  if (data.processImage) {
+    processTextWrapEl.classList.add('split-layout');
+    processFrameEl.style.display = '';
+    processFrameEl.classList.add('has-image', 'auto');
+    processFrameEl.innerHTML = '<img src="' + data.processImage + '" alt="' + data.title + ' process image" style="width:100%;height:auto;object-fit:contain;display:block;">';
+  } else {
+    processTextWrapEl.classList.remove('split-layout');
+    processFrameEl.style.display = 'none';
+    processFrameEl.classList.remove('has-image', 'auto');
+  }
+  const processGalleryEl = document.getElementById('p-process-gallery');
+  if (data.processGallery && data.processGallery.length) {
+    const groups = [];
+    let currentFrames = [];
+    data.processGallery.forEach(function(item, i){
+      const isObj = item && typeof item === 'object';
+      const src = isObj ? item.src : item;
+      const shape = isObj ? item.shape : null;
+      const caption = isObj ? item.caption : '';
+      const lockRow = isObj ? item.lockRow : false;
+      const captionSide = isObj ? item.captionSide : false;
+      const shapeClass = shape === 'auto' ? ' auto' : '';
+      const heightAttr = (isObj && item.height) ? ' style="height:' + item.height + 'px;"' : '';
+      const frameHtml = !src
+        ? '<div class="frame-box' + shapeClass + '"' + heightAttr + '>Add image ' + (i + 1) + '</div>'
+        : '<div class="frame-box has-image' + shapeClass + '"' + heightAttr + '><img src="' + src + '" alt="' + data.title + ' process image ' + (i + 1) + '"></div>';
+      currentFrames.push(frameHtml);
+      if (caption || i === data.processGallery.length - 1) {
+        groups.push({frames: currentFrames, caption: caption, lockRow: lockRow, captionSide: captionSide});
+        currentFrames = [];
+      }
+    });
+    const renderedGroups = groups.map(function(g){
+      const rowHtml = '<div class="process-gallery-row" style="gap:10px;">' + g.frames.join('') + '</div>';
+      if (!g.caption) return {html: rowHtml, lockRow: g.lockRow};
+      const wrapClass = g.captionSide ? 'process-gallery-group side' : 'process-gallery-group';
+      const captionWidthStyle = g.captionSide ? 'width:290px;' : 'width:100%;';
+      return {html: '<div class="' + wrapClass + '">' + rowHtml + '<div class="brief-gallery-caption" style="margin-top:14px;' + captionWidthStyle + 'box-sizing:border-box;">' + g.caption + '</div></div>', lockRow: g.lockRow};
+    });
+    let output = '';
+    let i = 0;
+    while (i < renderedGroups.length) {
+      if (renderedGroups[i].lockRow) {
+        let bundle = '';
+        while (i < renderedGroups.length && renderedGroups[i].lockRow) {
+          bundle += renderedGroups[i].html;
+          i++;
+        }
+        output += '<div class="process-gallery-lockrow">' + bundle + '</div>';
+      } else {
+        output += renderedGroups[i].html;
+        i++;
+      }
+    }
+    processGalleryEl.innerHTML = '<div class="process-gallery-row">' + output + '</div>';
+    processTextWrapEl.classList.add('full-width');
+  } else {
+    processGalleryEl.innerHTML = '';
+    processTextWrapEl.classList.remove('full-width');
+  }
+  const detailBoxesEl = document.getElementById('p-detail-boxes');
+  if (data.detailBoxes && data.detailBoxes.length) {
+    const boxCount = data.detailBoxes.length;
+    const wideClass = boxCount === 1 ? ' wide' : (boxCount === 2 ? ' half' : (boxCount === 3 ? ' third' : ''));
+    detailBoxesEl.innerHTML = data.detailBoxes.map(function(text, i){
+      if (!text) {
+        return '<div class="detail-box' + wideClass + ' placeholder">Add text ' + (i + 1) + '</div>';
+      }
+      return '<div class="detail-box' + wideClass + '">' + text + '</div>';
+    }).join('');
+  } else {
+    detailBoxesEl.innerHTML = '';
+  }
+  const processAfterWrapEl = document.getElementById('p-process-after-wrap');
+  const processAfterEl = document.getElementById('p-process-after');
+  if (data.processAfter) {
+    processAfterWrapEl.style.display = '';
+    processAfterEl.innerHTML = data.processAfter.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    processAfterWrapEl.style.display = 'none';
+  }
+  const detailBoxes2El = document.getElementById('p-detail-boxes-2');
+  if (data.detailBoxes2 && data.detailBoxes2.length) {
+    detailBoxes2El.innerHTML = data.detailBoxes2.map(function(text, i){
+      if (!text) {
+        return '<div class="detail-box placeholder">Add text ' + (i + 1) + '</div>';
+      }
+      return '<div class="detail-box">' + text + '</div>';
+    }).join('');
+  } else {
+    detailBoxes2El.innerHTML = '';
+  }
+  const processAfter2WrapEl = document.getElementById('p-process-after-2-wrap');
+  const processAfter2El = document.getElementById('p-process-after-2');
+  if (data.processAfter2) {
+    processAfter2WrapEl.style.display = '';
+    processAfter2El.innerHTML = data.processAfter2.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    processAfter2WrapEl.style.display = 'none';
+  }
+  const galleryCaptionEl = document.getElementById('p-gallery-caption');
+  if (data.galleryCaption) {
+    galleryCaptionEl.style.display = '';
+    galleryCaptionEl.innerHTML = data.galleryCaption;
+  } else {
+    galleryCaptionEl.style.display = 'none';
+  }
+  const galleryEl = document.getElementById('p-gallery');
+  galleryEl.style.gap = data.galleryGap ? data.galleryGap + 'px' : '';
+  galleryEl.classList.toggle('cols-3', data.galleryCols === 3);
+  galleryEl.classList.toggle('cols-1', data.galleryCols === 1);
+  galleryEl.classList.toggle('row-layout', !!data.galleryRow);
+  const galleryHeadingEl = document.getElementById('gallery-heading');
+  if (galleryHeadingEl) galleryHeadingEl.style.display = data.hideGalleryLabel ? 'none' : '';
+  if (data.gallery && data.gallery.length) {
+    const isOdd = data.gallery.length % 2 === 1;
+    const defaultPortrait = !!data.galleryPortrait;
+    const defaultLandscape = !!data.galleryLandscape;
+    const defaultAuto = !!data.galleryAuto;
+    const useWide = !defaultPortrait && !defaultLandscape && !defaultAuto && data.galleryCols !== 3;
+    function ytId(u){
+      var m = u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+      return m ? m[1] : null;
+    }
+    function playFacade(el){
+      var id = el.getAttribute('data-yt');
+      if (!id) return;
+      if (location.protocol === 'file:') {
+        // YouTube blocks embeds with no web address (Error 153), so open it on YouTube instead
+        window.open('https://www.youtube.com/watch?v=' + id, '_blank');
+        return;
+      }
+      el.classList.remove('yt-facade');
+      el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    }
+    document.addEventListener('click', function(e){
+      var el = e.target.closest && e.target.closest('.yt-facade');
+      if (el) playFacade(el);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var el = e.target.closest && e.target.closest('.yt-facade');
+      if (el) { e.preventDefault(); playFacade(el); }
+    });
+    function toEmbedUrl(u){
+      var m = u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+      if (m) return 'https://www.youtube.com/embed/' + m[1] + '?rel=0';
+      m = u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      if (m) return 'https://player.vimeo.com/video/' + m[1];
+      return u;
+    }
+    galleryEl.innerHTML = data.gallery.map(function(item, i){
+      const isObj = item && typeof item === 'object';
+      const src = isObj ? item.src : item;
+      const shape = isObj ? item.shape : null;
+      const isPortrait = shape === 'portrait' || (!shape && defaultPortrait);
+      const isLandscape = shape === 'landscape' || (!shape && defaultLandscape);
+      const isWideShape = shape === 'wide';
+      const isSquare = shape === 'square';
+      const isAutoWide = shape === 'auto-wide';
+      const shapeClass = (isPortrait ? ' portrait' : '') + (isLandscape ? ' landscape' : '') + (isWideShape ? ' wide' : '') + (isSquare ? ' square' : '') + (isAutoWide ? ' auto-wide' : '');
+      const autoClass = (shape === 'auto' || (!shape && defaultAuto)) ? ' auto' : '';
+      const isLast = i === data.gallery.length - 1;
+      const wideClass = (!shape && useWide && isOdd && isLast) ? ' wide' : '';
+      if (!src) {
+        return '<div class="g-item' + shapeClass + autoClass + wideClass + '">Add image ' + (i + 1) + '</div>';
+      }
+      const itemCaption = isObj && item.caption ? '<div class="g-item-caption">' + item.caption + '</div>' : '';
+      const isVideo = isObj && item.type === 'video';
+      const isEmbed = isObj && item.type === 'embed';
+      if (isEmbed) {
+        var vid = ytId(src);
+        if (vid) {
+          return '<div class="g-item has-image' + shapeClass + autoClass + wideClass + '"><div class="embed-wrap yt-facade" data-yt="' + vid + '" role="button" tabindex="0" aria-label="Play video"><svg class="yt-logo" viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.3.3 34 .3 34 .3S12.7.3 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.9 0 24 0 24s0 11.1 1.5 16.3a8.5 8.5 0 0 0 6 6C12.7 47.7 34 47.7 34 47.7s21.3 0 26.5-1.4a8.5 8.5 0 0 0 6-6C68 35.1 68 24 68 24s0-11.1-1.5-16.3z" fill="#f00"/><path d="M27 34l18-10-18-10z" fill="#fff"/></svg></div>' + itemCaption + '</div>';
+        }
+        return '<div class="g-item has-image' + shapeClass + autoClass + wideClass + '"><div class="embed-wrap"><iframe src="' + toEmbedUrl(src) + '" title="' + (item.caption || data.title) + '" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>' + itemCaption + '</div>';
+      }
+      if (isVideo) {
+        return '<div class="g-item has-image' + shapeClass + autoClass + wideClass + '"><video src="' + src + '" controls playsinline preload="metadata"></video>' + itemCaption + '</div>';
+      }
+      return '<div class="g-item has-image' + shapeClass + autoClass + wideClass + '"><img src="' + src + '" alt="' + data.title + ' gallery image ' + (i + 1) + '">' + itemCaption + '</div>';
+    }).join('');
+  } else {
+    galleryEl.innerHTML = [1,2,3,4].map(function(n){
+      return '<div class="g-item">Add image ' + n + '</div>';
+    }).join('');
+  }
+  const outcomeEl = document.getElementById('p-outcome');
+  if (data.outcome) {
+    outcomeEl.classList.remove('placeholder');
+    outcomeEl.innerHTML = data.outcome.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  } else {
+    outcomeEl.classList.add('placeholder');
+    outcomeEl.textContent = 'Add the insights or results of this project — what it achieved, and what you learned.';
+  }
+  document.title = data.title + ' — Bhoomi Agarwal';
+  if (data.hideSections) {
+    var allSections = ['overview','research','brief','process','budget','exhibition','presskit','gallery','outcome'];
+    var toHide = data.hideSections === true ? allSections : data.hideSections;
+    toHide.forEach(function(name){
+      var el = document.getElementById('section-' + name);
+      if (el) el.style.display = 'none';
+    });
+  }
+
+  const idx = order.indexOf(id);
+  const nextId = order[(idx + 1) % order.length];
+  document.getElementById('next-link').href = 'project.html?id=' + nextId;
+
+  const prevId = order[(idx - 1 + order.length) % order.length];
+  document.getElementById('prev-link').href = 'project.html?id=' + prevId;
+</script>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class="lightbox-content" id="lightbox-content"></div>
+  <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<script>
+  (function(){
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+
+    let group = [];
+    let currentIndex = -1;
+
+    function renderCurrent(){
+      const el = group[currentIndex];
+      if (!el) return;
+      lightboxContent.innerHTML = '';
+      if (el.tagName === 'IMG') {
+        const img = document.createElement('img');
+        img.src = el.currentSrc || el.src;
+        img.alt = el.alt || '';
+        lightboxContent.appendChild(img);
+      } else if (el.tagName === 'VIDEO') {
+        const video = document.createElement('video');
+        video.src = el.currentSrc || el.src;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        lightboxContent.appendChild(video);
+      }
+      lightboxPrev.disabled = currentIndex <= 0;
+      lightboxNext.disabled = currentIndex >= group.length - 1;
+    }
+
+    function openLightbox(el){
+      // Build the navigable group from every lightbox-enabled media element
+      // currently on the page, in document order, so arrows move through
+      // whatever gallery/section the clicked item belongs to.
+      group = Array.from(document.querySelectorAll('img[data-lightbox-bound], video[data-lightbox-bound]'));
+      currentIndex = group.indexOf(el);
+      if (currentIndex === -1) { group = [el]; currentIndex = 0; }
+      renderCurrent();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showPrev(){ if (currentIndex > 0) { currentIndex--; renderCurrent(); } }
+    function showNext(){ if (currentIndex < group.length - 1) { currentIndex++; renderCurrent(); } }
+
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxContent.innerHTML = '';
+    }
+
+    function attachLightboxHandlers(){
+      const media = document.body.querySelectorAll('img, video');
+      media.forEach(function(el){
+        if (el.closest('#lightbox')) return;
+        if (el.closest('.sc-card')) return; // flip-cards already use click to flip
+        if (el.dataset.lightboxBound) return;
+        el.dataset.lightboxBound = '1';
+        if (el.tagName === 'IMG') {
+          el.style.cursor = 'zoom-in';
+          el.addEventListener('click', function(){ openLightbox(el); });
+        } else if (el.tagName === 'VIDEO') {
+          // Wrap with an expand button so native play/pause controls stay fully usable
+          const wrap = el.parentElement;
+          if (wrap && !wrap.querySelector('.video-expand-btn')) {
+            if (getComputedStyle(wrap).position === 'static') wrap.style.position = 'relative';
+            const btn = document.createElement('button');
+            btn.className = 'video-expand-btn';
+            btn.setAttribute('aria-label', 'Expand video');
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+            btn.addEventListener('click', function(e){ e.stopPropagation(); openLightbox(el); });
+            wrap.appendChild(btn);
+          }
+        }
+      });
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', showPrev);
+    lightboxNext.addEventListener('click', showNext);
+    lightbox.addEventListener('click', function(e){
+      if (e.target === lightbox) closeLightbox();
+    });
+    window.addEventListener('keydown', function(e){
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+
+    // Content is built dynamically by the render script above; run after it,
+    // and again shortly after to catch anything added asynchronously.
+    attachLightboxHandlers();
+    setTimeout(attachLightboxHandlers, 300);
+    setTimeout(attachLightboxHandlers, 1000);
+  })();
+</script>
+
+</body>
+</html>
